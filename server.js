@@ -26,7 +26,7 @@ app.get("/", (req , res) => {
     console.log("Home route")
 })
 
-app.listen(PORT , () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log(`Sever is listening on http://localhost:${PORT}`)
 })
 

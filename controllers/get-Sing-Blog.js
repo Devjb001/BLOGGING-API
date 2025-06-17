@@ -6,7 +6,7 @@ async function getSingleBlog(req, res) {
 
     try {
         const singleBlog = await blogModel.findById(blogId)
-        .populate('author' , 'name email')
+        .populate('author' , 'first_name last_name email')
 
         if(!singleBlog || singleBlog.state !== "published"){
             return res.status(404).json({

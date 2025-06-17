@@ -19,7 +19,7 @@ async function getPublicBlogs(req , res) {
             }
 
             const blogsGotten = await blogModel.find(query)
-            .populate('author' , 'name')
+            .populate('author' , 'first_name last_name email')
             .sort(sort)
             .limit(parseInt(limit))
             .skip((page -1) * limit)

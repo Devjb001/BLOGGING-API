@@ -15,10 +15,10 @@ app.use(express.urlencoded({ extended: true }));
 
 mongoConnection();
 
-app.use("/api", router);
+app.use(router);
 
 app.get("/", (req , res) => {
-    res.status(200).send("This is home route")
+    res.status(200).send("This is home route, pls select a route to perform an action")
     console.log("Home route")
 })
 

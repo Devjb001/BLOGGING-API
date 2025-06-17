@@ -27,7 +27,13 @@ router.get("/blogs/my-blogs" , verifyToken , getMyBlogs)
 router.get("/blogs/:id" , getSingleBlog)
 
 
-console.log(router.stack.map(r => r.route && r.route.path));
+console.log("Defined routes:");
+router.stack.forEach(r => {
+    if (r.route) {
+        console.log(r.route.path);
+    }
+});
+
 
 module.exports = router
 

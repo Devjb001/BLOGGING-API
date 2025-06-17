@@ -15,7 +15,7 @@ function errorHandler(err, req, res, next) {
 
 
 function notFoundHandler(req, res, next) {
-    const error = new Error(`Hy!, are you missing a route? The requested route '${req.originalUrl}' does not exist on this server`);
+    const error = new Error(`Hy!, are you missing a route? The requested route '${req.originalUrl}' does not exist on this server, or the server dont support the request methot`);
     error.status = 404;
     next(error); 
 }

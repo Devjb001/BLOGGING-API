@@ -1,33 +1,8 @@
-const express = require('express');
-const { mongoConnection } = require('./config/db-connection');
-const router = require('./routes/userRoute');
+const app = require("./app");
+require("dotenv").config();
 
-
-require("dotenv").config
-
-const app = express()
 const PORT = process.env.PORT;
-
-
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }));
-
-mongoConnection();
-
-app.use(router)
-
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something went wrong!');
-});
-
-app.get("/", (req , res) => {
-    res.status(200).send("This is home route")
-    console.log("Home route")
-})
 
 app.listen(process.env.PORT || 3000, () => {
     console.log(`Sever is listening on http://localhost:${PORT}`)
 })
-
-module.exports = app;

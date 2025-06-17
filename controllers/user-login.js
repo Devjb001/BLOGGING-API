@@ -10,19 +10,20 @@ async function userLogin(req , res , next) {
         const userFound = await userModel.findOne({email});
 
         if(!userFound){
-            res.status(400).json({
+
+           console.log("User not found, pls create an account")
+           return res.status(400).json({
                 message : "User not found, pls create an account"
             })
-            console.log("User not found, pls create an account")
-            return;
         }
 
         const passwordIsMatch = await userFound.comparePassword(password);
         if (!passwordIsMatch){
-            res.status(400).send({
+            console.log("Your password is not correct" )
+            return res.status(400).send({
             message : "password is not correct"
         })
-        console.log("Your password is not correct" )
+        
         } 
 
         const token = jwt.sign({ userId: userFound._id }, process.env.JWT_SECRET, { expiresIn: '1h' });

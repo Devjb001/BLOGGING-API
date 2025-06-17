@@ -9,8 +9,10 @@ async function userSingUp(req , res , next) {
         const userAlreadyExist = await userModel.findOne({$or : [{first_name} , {last_name} , {email}]});
 
         if(userAlreadyExist){
-            res.status(400).send("User alread exist")
-            console.log("You cannot register twice, try to login")
+           console.log("You cannot register twice, try to login")
+           return res.status(400).json({
+                message : " User already exist, pls go and login"
+            })
         }
 
         const newUser = new userModel({
